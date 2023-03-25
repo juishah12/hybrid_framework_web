@@ -28,13 +28,15 @@ class Test_trial(WebDriverWrapper):
      select_project.select_by_value("Upgrades")
      time.sleep(5)
      checkboxdata=self.driver.find_element(By.XPATH,"//span[normalize-space()='Modernizing Test Automation with AI']").text
-     assertvalue=assert_that(checkboxdata).contains(checkbox)
-     if assertvalue == 'Modernizing Test Automation with AI':
-         self.driver.find_element(By.NAME,"i_m_interested_in_learning_more_about").click()
+     assertvalue = assert_that(checkboxdata).contains(checkbox)
+     if assertvalue == True:
+         self.driver.find_element(By.XPATH,"//input[@value='Modernizing Test Automation with AI']").click()
      else:
          self.driver.find_element(By.XPATH,"//input[@value='Moving from Manual Testing to Test Automation with AI']").click()
-     time.sleep(5)
-     self.driver.find_element(By.NAME,"terms_and_conditions").click()
-     self.driver.find_element(By.XPATH,"//input[@name='hs_context']").click()
-     time.sleep(3)
+
+     self.driver.find_element(By.XPATH,"//input[@name='terms_and_conditions']").click()
+     self.driver.find_element(By.XPATH,"//input[@type='submit']").click()
+     time.sleep(30)
+     result = self.driver.find_element(By.XPATH,"//h1[contains(normalize-space(),'free trial')]").text
+     assert_that(result).contains('free trial')
      self.driver.quit()

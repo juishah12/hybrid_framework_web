@@ -31,6 +31,7 @@ class TestLiveDemo(WebDriverWrapper):
      time.sleep(10)
      self.driver.find_element(By.XPATH,"//input[@value='Submit']").click()
      time.sleep(5)
+     self.driver.find_element(By.XPATH,"//div[@class='description']//h1")
      self.driver.quit()
 
 
